@@ -31,14 +31,32 @@ class App extends Component {
     });
   };
 
+  deletePerson = (personIndex) => {
+    const person = this.state.person;
+    console.log(person);
+    person.splice(personIndex, 1);
+    this.setState({ person: person });
+  };
+
   render() {
     return (
       <div className="App">
-        <button onClick={this.switchHandler.bind(this, "GRACY")}>
+        {/* <button onClick={this.switchHandler.bind(this, "GRACY")}>
           Click Here
-        </button>
-        {this.state.person.map((person) => {
-          return <Person name={person.name} age={person.age} />;
+        </button> */}
+        {this.state.person.map((person, index) => {
+          const style = {
+            border: "2px solid black",
+            color: "blue",
+          };
+          return (
+            <Person
+              name={person.name}
+              age={person.age}
+              style={style}
+              // click={this.deletePerson(index)}
+            />
+          );
         })}
       </div>
     );
